@@ -1,0 +1,66 @@
+server:
+  port: 8104
+  servlet:
+    contextPath: /reporting/api
+management:
+  endpoints:
+    web:
+      base-path: /actuator/
+      exposure:
+        include: health,info,loggers,metrics
+swagger:
+  enabled: true
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} | marker=%marker |  clientId=%X{clientId} | level=%5p | thread=%thread | traceId=%X{traceId} spanId=%X{spanId} |  projectVersion=%X{projectVersion} |class=%class{15}.%L | msg="%.-50000m"%n'
+
+spring:
+  application:
+    name: "reporting-xbc"
+  webflux:
+    base-path: /reporting/api
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          tenantLulo:
+            issuer: https://lulobank.com.co
+            private-key-value: classpath:private_key.pem
+            public-key-value: classpath:public_key.pem
+          tenantAWS:
+            jwk-set-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_1WmBHEn0a/.well-known/jwks.json
+            issuer: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_1WmBHEn0a
+            authorized-scope: internal_api/internal_transactions
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: us-east-1
+    dynamodb:
+      endpoint: http://localhost:8080
+    s3:
+      statement:
+        name: "lbk-reporting-sand"
+        directory: "statement/{0}/{1}/{2}/"
+      statement-transient:
+        name: "lbk-reporting-transient-sand"
+        directory: "notification/pending_loan_statements/"
+      digitalevidence:
+        bucket:
+          policies: fake-bucket-name
+          evidence: fake-bucket-name
+    sqs:
+      end-point: http://sqs.dev.local:9324
+      listeners:
+        application-events: http://sqs.dev.local:9324/queue/default
+      queue:
+        client-events-v2: http://sqs.dev.local:9324/queue/default
+        client-alerts-events: http://sqs.dev.local:9324/queue/default
+      max-number-of-messages: 10
+
+flexibility:
+  sdk:
+    url: "http://happy.flexibilty.com"
+    clientId: fakeClientId
+    secret: fakeSecretId

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="http://localhost:8104/reporting/api/css/base.css"/>
+    <link rel="stylesheet" href="http://localhost:8104/reporting/api/css/creditStamenStyle.css"/>
+</head>
+<body>
+<div class="page-header" th:include="header::header"></div>
+<div class="page-footer" th:include="footer::footer"></div>
+
+<table class="table-page-container">
+    <thead>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <div class="div-body">
+                <h3 class="date-title"><label th:text="${periodDate}"></label></h3>
+                <h1 class="report-title">
+                    Extracto Crédito de Consumo <span class="strong-text"></span>
+                </h1>
+                <br>
+
+                <div class="detail-box-a">
+                    <div class="info-box-a info-box-a-number">No.</div>
+                    <div class="info-box-a info-box-a-share">Cuota</div>
+                    <div class="info-box-a info-box-a-date">Fecha de corte</div>
+                    <div class="info-box-a info-box-a-name">Nombre y correo electrónico</div>
+
+                    <div class="resp-box-a resp-box-a-number" th:text="${idLoan}"></div>
+                    <div class="resp-box-a resp-box-a-share" th:text="${#numbers.formatDecimal(instalment, 1, 'COMMA', 0, 'POINT')}+' de '
+                  +${#numbers.formatDecimal(instalments, 1, 'COMMA', 0, 'POINT')}"></div>
+                    <div class="resp-box-a resp-box-a-date" th:text="${cutOffDate}"></div>
+                    <div class="resp-box-a resp-box-a-name" th:utext="${fullName}">
+                    </div>
+
+                    <div class="credit-state-box-a">
+                        <img th:if="${!isInArrears}" class="credit-state-img" src="http://localhost:8104/reporting/api/img/check-circle.png"
+                             alt="al día"/>
+                        <div class="credit-state" th:text="'Estado: '+${creditState}"></div>
+                    </div>
+                    <div class="email-box-a" th:text="${email}">
+                    </div>
+                    <br>
+                </div>
+
+                <div class="detail-box-b">
+                    <div class="current-detail">
+                        <h2 class="detail-box-title">Resumen del periodo</h2>
+                        <div class="limit-payment">
+                            <div class="limit-title">Límite de pago:</div>
+                            <div class="limit-value" th:text="${instalmentDueDate}"></div>
+                        </div>
+                        <div class="box1 border-div">
+                            <div class="info-box-b capital">Capital</div>
+                            <div class="info-box-b interests">Intereses</div>
+                            <div class="info-box-b delinquent">Int. mora</div>
+                            <div class="info-box-b delinquent-balance">Saldo en mora</div>
+                            <div class="info-box-b insurance">Seguro</div>
+                            <div class="info-box-b collection-expenses">Gastos cobranza</div>
+                            <div class="resp-box-b capital"
+                                 th:text="'COP$'+${#numbers.formatDecimal(instalmentPrincipalDue, 1, 'COMMA', 2, 'POINT')}"></div>
+                            <div class="resp-box-b interests"
+                                 th:text="'COP$'+${#numbers.formatDecimal(instalmentInterestDue, 1, 'COMMA', 2, 'POINT')}"></div>
+                            <div class="resp-box-b delinquent"
+                                 th:text="'COP$'+${#numbers.formatDecimal(instalmentPenaltiesDue, 1, 'COMMA', 2, 'POINT')}"></div>
+                            <div class="resp-box-b delinquent-balance"
+                                 th:text="'COP$'+${#numbers.formatDecimal(inArrearsBalance, 1, 'COMMA', 2, 'POINT')}"></div>
+                            <div class="resp-box-b insurance"
+                                 th:text="'COP$'+${#numbers.formatDecimal(feeAmount, 1, 'COMMA', 2, 'POINT')}"></div>
+                            <div class="resp-box-b collection-expenses"
+                                 th:text="'COP$'+${#numbers.formatDecimal(legalExpenses, 1, 'COMMA', 2, 'POINT')}"></div>
+                        </div>
+                        <div class="box2 border-div">
+                            <div class="info-box-2">Cuota mensual</div>
+                            <div class="resp-box-2"
+                                 th:text="'COP$'+${#numbers.formatDecimal(instalmentTotalDue, 1, 'COMMA', 2, 'POINT')}"></div>
+                        </div>
+                    </div>
+                    <div class="last-detail" th:if="${lastPeriodExist}">
+                        <div class="detail-box-b">
+                            <h2 class="detail-box-title title-box-b">Resumen del pago anterior</h2>
+                            <div class="box3 border-div-last-period">
+                                <div class="info-box-b-last information-last">Valor pagado</div>
+                                <div class="info-box-b-last information-last">Capital</div>
+                                <div class="info-box-b-last information-last">Intereses</div>
+                                <div class="info-box-b-last information-last">Int. mora</div>
+                                <div class="info-box-b-last information-last">Seguro</div>
+                                <div class="info-box-b-last information-last">Gastos cobranza</div>
+
+                                <div class="resp-box-b-last information-last"
+                                     th:text="'COP$'+${#numbers.formatDecimal(lastTotalPaid, 1, 'COMMA', 2, 'POINT')}"></div>
+                                <div class="resp-box-b-last information-last"
+                                     th:text="'COP$'+${#numbers.formatDecimal(lastPrincipalPaid, 1, 'COMMA', 2, 'POINT')}"></div>
+                                <div class="resp-box-b-last information-last"
+                                     th:text="'COP$'+${#numbers.formatDecimal(lastInterestPaid, 1, 'COMMA', 2, 'POINT')}"></div>
+                                <div class="resp-box-b-last information-last"
+                                     th:text="'COP$'+${#numbers.formatDecimal(lastPenaltyPaid, 1, 'COMMA', 2, 'POINT')}"></div>
+                                <div class="resp-box-b-last information-last"
+                                     th:text="'COP$'+${#numbers.formatDecimal(lastFeesPaid, 1, 'COMMA', 2, 'POINT')}"></div>
+                                <div class="resp-box-b-last information-last"
+                                     th:text="'COP$'+${#numbers.formatDecimal(lastLegalExpenses, 1, 'COMMA', 2, 'POINT')}"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-last-period" th:if="${!lastPeriodExist}">
+                </div>
+                <div class="detail-box-c">
+                    <h2 class="detail-box-title general-data">Datos generales</h2>
+                    <div class="info-box-c box-c">Saldo total a la fecha</div>
+                    <div class="resp-box-c box-c"
+                         th:text="'$'+${#numbers.formatDecimal(totalBalance, 1, 'COMMA', 2, 'POINT')}"></div>
+                    <div class="info-box-c box-c">Monto solicitado</div>
+                    <div class="resp-box-c box-c"
+                         th:text="'$'+${#numbers.formatDecimal(loanAmount, 1, 'COMMA', 2, 'POINT')}"></div>
+                    <div class="info-box-c box-c">Desembolso</div>
+                    <div class="resp-box-c box-c" th:text="${disbursementDate}"></div>
+                    <div class="info-box-c box-c" th:if="${isInArrears}">Días mora</div>
+                    <div class="resp-box-c box-c" th:if="${isInArrears}" th:text="${arrearsDays}"></div>
+                    <div class="info-box-c box-c">Tasa de interés efectiva anual</div>
+                    <div class="resp-box-c box-c"
+                         th:text="${#objects.nullSafe(#numbers.formatDecimal(interestRate, 1, 'COMMA', 2, 'POINT'),'0')}+' %'"></div>
+                    <div class="info-box-c box-c" th:if="${isInArrears}">Tasa de interés mora efectiva anual</div>
+                    <div class="resp-box-c box-c" th:if="${isInArrears}"
+                         th:text="${#numbers.formatDecimal(penaltyRate, 1, 'COMMA', 2, 'POINT')}+' %'"></div>
+                    <div class="info-box-c box-c">Débito automático</div>
+                    <div class="resp-box-c box-c" th:text="${automaticDebit}"></div>
+                    <div class="info-box-c box-c">Tipo de cuota</div>
+                    <div class="resp-box-c box-c" th:text="${amortization}"></div>
+                </div>
+                <div class="space-general-data" th:if="${lastPeriodExist}">
+                </div>
+
+                <div class="end-message">
+                    <br>
+                    La información de tus obligaciones podrá ser reportada a las centrales de riesgo de información
+                    financiera, crediticia, comercial y de servicios.
+                    Si tus obligaciones se encuentran en mora pasados 20 días calendario contados a
+                    partir del día siguiente del envío de este extracto, Lulo Bank generará
+                    un reporte negativo a dichas centrales y este se mantendrá allí por el término legal.<br>
+                    <br>
+                    ¿Tienes dudas? Ingresa y resuélvelas en el canal de Ayuda en la app. Recuerda que en nuestro portal
+                    web puedes encontrar toda la información sobre nuestra gestión de cobranza judicial y prejudicial,
+                    como lo son gastos, los momentos a partir de los cuales inicia la gestión de cobranza y quiénes
+                    realizan esta gestión. Haz tu pago a través de la App de Lulo, directamente desde tu cuenta o por
+                    PSE.
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>
+</body>
+</html>

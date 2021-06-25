@@ -1,0 +1,32 @@
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: us-east-1
+    dynamodb:
+      endpoint: "http://dynamodb.us-east-1.amazonaws.com"
+    s3:
+      statement:
+        name: "lbk-reporting-sand"
+        directory: "statement/{0}/{1}/{2}/"
+      statement-transient:
+        name: "lbk-reporting-transient-sand"
+        directory: "notification/pending_loan_statements/"
+      digitalevidence:
+        bucket:
+          policies: lulo-terminos-y-condiciones-sand
+          evidence: evidencia-digital-sand
+    sqs:
+      end-point: https://sqs.us-east-1.amazonaws.com
+      listeners:
+        application-events: https://sqs.us-east-1.amazonaws.com/848155883266/cloudWatchSQS
+      queue:
+        client-events-v2: http://sqs.dev.local:9324/queue/default
+      max-number-of-messages: 10
+
+flexibility:
+  sdk:
+    url: http://flex-internal-nlb-sand-7780f47397c1c3fc.elb.us-east-1.amazonaws.com
+    clientId: ABTr4YVFhas8Yfq1uGfR
+    secret: fRrdj0JD1zDLLcPHpVkCsKRKPG5C4kafaTW5PUSy

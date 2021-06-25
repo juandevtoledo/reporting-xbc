@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="http://localhost:8104/reporting/api/css/base.css"/>
+	<link rel="stylesheet" href="http://localhost:8104/reporting/api/css/fatcaStyle.css"/>
+</head>
+<body>
+<div class="page-header" th:include="header::header"></div>
+<table class="table-page-container">
+	<thead>
+	</thead>
+	<tbody>
+	<tr>
+		<td>
+			<div class="div-body">
+				<h3><label th:text="${reportDate}"></label></h3>
+				<h1 class="report-title">
+					Autocertificación Residencia Fiscal / Responsabilidad Tributaria Persona Natural<span class="strong-text"></span>
+				</h1>
+				<br>
+				<div class="detail-box-a">
+					<div class="info-box-a">Nombre</div>
+					<div class="info-box-a">Tipo de documento</div>
+					<div class="info-box-a">Número de documento</div>
+					<div class="info-box-a">Fecha de nacimiento</div>
+
+					<div class="resp-box-a" th:utext="${name}"></div>
+					<div class="resp-box-a" th:text="${documentType}"></div>
+					<div class="resp-box-a" th:text="${document}"></div>
+					<div class="resp-box-a" th:text="${birthday}"></div>
+				</div>
+				<div class="detail-box-b">
+					<div class="info-box-b">Lugar de nacimiento</div>
+					<div class="info-box-b">Dirección</div>
+					<div class="info-box-b">Ciudad</div>
+					<div class="info-box-b">Número de contacto</div>
+
+					<div class="resp-box-b" th:text="${birthPlace}"></div>
+					<div class="resp-box-b">
+						<div class="address-box" th:text="${address}"></div>
+						<div class="address-box complement-box" th:text="${addressComplement}"></div>
+					</div>
+					<div class="resp-box-b" th:text="${city}"></div>
+					<div class="resp-box-b" th:text="${phoneNumber}"></div>
+				</div>
+				<br>
+				<div class="detail-box-c">
+					<h2 class="detail-box-title">Responsabilidad Triburaria en el Extranjero</h2>
+                    <div class="info-box-c box-c">Reponsable tributario</div><div class="resp-box-c box-c" th:text="${taxLiability}"></div>
+                    <div class="info-box-c box-c" th:if="${country != null}">País</div><div class="resp-box-c box-c" th:if="${country != null}" th:text="${country}"></div>
+                    <div class="info-box-c box-c" th:if="${taxNumber != null}">Número Tributario</div><div class="resp-box-c box-c" th:if="${taxNumber != null}" th:text="${taxNumber}"></div>
+				</div>
+				<br>
+				<br>
+				<div class="detail-box-d">
+					<h2 class="detail-box-title">Declaraciones y Autorizaciones</h2>
+                    <p class="info-box-d">Declaro que en el evento en el que se afecte mi calidad de responsable tributario en el país 
+                    					  registrado en el presente documento, me comprometeré a reportar a Lulo Bank
+                    					  S.A. de tal situación lo que incluye a suministrar una autocertificación actualizada.</p>
+				</div>
+			</div>
+		</td>
+	</tr>
+	</tbody>
+	<tfoot>
+	</tfoot>
+</table>
+</body>
+<footer>
+	<div class="page-footer-consumer">
+		<div class="superintendencia_logo">
+			<img class="mark-brand" src="http://localhost:8104/reporting/api/img/vigilado.png" alt="Vigilado superintendencia"/>
+		</div>
+		<div class="nit_footer_lulo">
+			<p> Lulo Bank S.A. NIT 901 383 474-9
+		</div>
+	</div>
+</footer>
+</html>

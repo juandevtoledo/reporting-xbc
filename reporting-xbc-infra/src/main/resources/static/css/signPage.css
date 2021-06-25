@@ -1,0 +1,162 @@
+@font-face {
+  font-family: Gilroy;
+  src: url(font/gilroy-semibold-webfont.woff);
+}
+
+.div-firma {
+  width: 514px;
+  height: 424px;
+  left: 80px;
+  top: 112px;
+  position: absolute;
+  border: 2px solid #e0e5ed;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.row-logo {
+  position: absolute;
+  width: 88px;
+  height: 55px;
+  left: 360px;
+  top: 297px;
+}
+.div-logo {
+  width: 100%;
+  position: relative;
+  padding-top: 10px;
+  padding-left: 10px;
+  float: left;
+}
+.div-title-fecha {
+  position: absolute;
+  left: 25px;
+  top: 40px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: #667A99;
+  letter-spacing: 0.02em;
+
+}
+.div-fecha {
+  position: absolute;
+  left: 25px;
+  top: 80px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+  color: #121622;
+
+}
+.div-title-nombre {
+  position: absolute;
+  left: 25px;
+  top: 130px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: #667A99;
+  letter-spacing: 0.02em;
+}
+.div-nombre {
+  position: absolute;
+  left: 25px;
+  top: 170px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+  color: #121622;
+}
+.div-title-apellido {
+  position: absolute;
+  left: 25px;
+  top: 220px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: #667A99;
+  letter-spacing: 0.02em;
+}
+.div-apellido {
+  position: absolute;
+  left: 25px;
+  top: 260px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+  color: #121622;
+}
+.div-title-cedula {
+  position: absolute;
+  left: 25px;
+  top: 310px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: #667A99;
+  letter-spacing: 0.02em;
+}
+.div-cedula {
+  position: absolute;
+  left: 25px;
+  top: 350px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+  color: #121622;
+}
+.logo-brand-sign {
+  position: relative;
+  width: 90px;
+  height: 60px;
+  padding-left: 15px;
+}
+.new-page {
+    page-break-before: always;
+}
+
+@page last {
+    @bottom-left {
+        content: element(page-footer-last);
+        vertical-align: top;
+    }
+    @top-right {
+        content: element(page-header-last);
+        vertical-align: bottom;
+    }
+    size: A4 portrait;
+    margin-top: 3.6cm;
+    margin-bottom: 3cm;
+}
+
+@font-face {
+    font-family: 'gilroymedium';
+    src: url('font/gilroy-medium-webfont.woff2') format('woff2'),
+    url('font/gilroy-medium-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+#page-footer-last{position: running(page-footer-last);}
+#page-header-last{position: running(page-header-last);}
+#last-page-sign {page:last}

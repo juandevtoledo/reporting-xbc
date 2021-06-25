@@ -1,0 +1,4 @@
+rootProject.name = 'reporting-xbc'
+include 'reporting-xbc-domain'
+include 'reporting-xbc-infra'
+

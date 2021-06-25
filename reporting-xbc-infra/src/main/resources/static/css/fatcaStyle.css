@@ -1,0 +1,240 @@
+.table-page-container {
+.table-page-container {
+	font-family: 'gilroysemibold','gilroysemibold', sans-serif;
+    width: 100%;
+}
+
+.div-body {
+    width: 100%;
+    float:left;
+    margin-top: -10px;
+    font-family: 'gilroybold';
+    position: relative;
+    color: #003444 ;
+    margin-left: 30px;
+}
+
+.report-title {
+	font-family: 'gilroybold';
+	font-size: 22px;
+	margin-top: 5px;
+	line-height: 30px;
+	letter-spacing: 0.02em;
+	color: #121622;
+	width: 95%;
+}
+
+.detail-box-title {
+    font-family: 'gilroysemibold';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0.02em;
+	color: #667A99;
+}
+
+.detail-box-a {
+	width: 90%;
+	margin-top: 10px;
+}
+
+.info-box-a{
+	float:left;
+	width:25%;
+
+	font-family: 'gilroybold';
+	font-size: 10px;
+	line-height: 11.2px;
+	letter-spacing: 0.02em;
+	color: #667A99;
+}
+
+.resp-box-a{
+    margin-top: 11.2px;
+	float: left;
+	width: 25%;
+
+	font-family: 'gilroybold';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 11px;
+	line-height: 14px;
+	letter-spacing: 0.02em;
+	color: #121622;
+}
+
+.detail-box-b {
+	width: 90%;
+	margin-top: 80px;
+}
+
+.info-box-b{
+	float:left;
+	width:25%;
+
+	font-family: 'gilroybold';
+	font-size: 10px;
+	line-height: 11.2px;
+	letter-spacing: 0.02em;
+	color: #667A99;
+}
+
+.resp-box-b{
+    margin-top: 11.2px;
+	float: left;
+	width: 25%;
+
+	font-family: 'gilroybold';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 11px;
+	line-height: 14px;
+	letter-spacing: 0.02em;
+	color: #121622;
+}
+
+.address-box{
+    height: 50%;
+}
+
+.complement-box{
+	line-height: 10px;
+}
+
+.detail-box-c{
+	width:100%;
+	margin-top: 100px;
+}
+
+.box-c{
+	border-radius: 10px;
+	background-color: #eef1f6;
+    height: 17px;
+	margin-top: 5px;
+	margin-right: 3px;
+}
+
+.info-box-c{
+	float: left;
+	width: 25%;
+	position: relative;
+	font-family: 'gilroybold';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 11.2px;
+	letter-spacing: 0.02em;
+	color: #667A99;
+	padding: 10px 15px 5px 15px;
+}
+
+.resp-box-c{
+	float: left;
+	width: 60%;
+	position: relative;
+	font-family: 'gilroybold';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 11.2px;
+	letter-spacing: 0.02em;
+	color: #1B2132;
+	padding: 10px 15px 5px 15px;
+}
+
+.detail-box-d{
+	width:100%;
+	margin-top: 100px;
+}
+
+.info-box-d{
+	float: left;
+	width: 90%;
+	position: relative;
+	font-family: 'gilroymedium';
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0.02em;
+	color: #121622;
+}
+
+.page-footer-consumer{
+	position: relative;
+	float: left;
+  	width: 100%;
+}
+
+.mark-brand{
+	width: 16px;
+	height: 150px;
+}
+
+.superintendencia_logo{
+	position: relative;
+	float: left;
+	margin-top: 10px;
+  	margin-left: -15px;
+}
+
+.nit_footer_lulo{
+	font-family: 'gilroymedium';
+	font-size: 8px;
+	color: #667A99;
+	margin-left: 575px;
+	margin-top: 250px;
+}
+
+.text_footer{
+	position: relative;
+	float: left;
+	text-align: left;
+  	width: 90%;
+  	margin-left: 0px;
+  	margin-top: 30px;
+  	font-family: 'gilroymedium';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 9.8px;
+	line-height: 11.2px;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 0.02em;
+	color: #667A99;
+}
+
+#pagenumber:before {
+    content: counter(page);
+    padding-left: 110%;
+}
+
+footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+}
+
+@font-face {
+    font-family: 'gilroybold';
+    src: url('font/gilroy-bold-webfont.woff2') format('woff2'),
+    url('font/gilroy-bold-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'gilroymedium';
+    src: url('font/gilroy-medium-webfont.woff2') format('woff2'),
+    url('font/gilroy-medium-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'gilroysemibold';
+    src: url('font/gilroy-semibold-webfont.woff2') format('woff2'),
+    url('font/gilroy-semibold-webfont.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}

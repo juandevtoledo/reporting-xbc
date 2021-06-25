@@ -1,0 +1,63 @@
+server:
+  port: 8104
+  servlet:
+    contextPath: /reporting/api
+management:
+  endpoints:
+    web:
+      base-path: /actuator/
+      exposure:
+        include: health,info,loggers,metrics
+swagger:
+  enabled: ${ENABLED-SWAGGER:false}
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} | marker=%marker |  clientId=%X{clientId} | level=%5p | thread=%thread | traceId=%X{traceId} spanId=%X{spanId} |  projectVersion=%X{projectVersion} |class=%class{15}.%L | msg="%.-50000m"%n'
+
+spring:
+  zipkin:
+    baseUrl: ${SPRING_ZIPKIN_BASEURL}
+  application:
+    name: "reporting-xbc"
+  webflux:
+    base-path: /reporting/api
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          tenantLulo:
+            issuer: ${ISSUER_LULO}
+            private-key-value: classpath:private_key.pem
+            public-key-value: classpath:public_key.pem
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: ${AWS_SQS_REGION}
+    dynamodb:
+      endpoint:  ${AWS_DYNAMO_ENDPOINT}
+    s3:
+      statement:
+        name: ${AWS_S3_REPORTING}
+      statement-transient:
+        name: ${AWS_S3_BUCKET_TRANSIENT}
+        directory: ${AWS_S3_TRANSIENT_DIRECTORY}
+      digitalevidence:
+        bucket:
+          policies: ${POLICIES_S3_BUCKET_NAME}
+          evidence: ${EVIDENCE_S3_BUCKET_NAME}
+    sqs:
+      end-point: ${AWS_SQS_ENDPOINT}
+      listeners:
+        application-events:  ${AWS_SQS_REPORTING_XBC_ENDPOINT}
+      queue:
+        client-events-v2: ${AWS_SQS_CLIENTS_ENDPOINT_V2}
+        client-alerts-events: ${AWS_SQS_CLIENT_ALERTS_V2_ENDPOINT}
+      max-number-of-messages: 10
+
+flexibility:
+  sdk:
+    url: ${FLEXIBILITY_ENDPOINT}
+    clientId: ${FLEXIBILITY_CLIENT_ID}
+    secret: ${FLEXIBILITY_SECRET}

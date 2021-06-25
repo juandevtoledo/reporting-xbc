@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Firma</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="http://localhost:8104/reporting/api/css/signPage.css"/>
+</head>
+<body>
+<div class="div-firma" id="firma">
+    <div class="row-logo">
+        <div class="div-logo" id="divlogo">
+            <img class="logo-brand-sign" src="http://localhost:8104/reporting/api/img/new_logo_lulo.png" alt="Logo Lulo"/>
+        </div>
+    </div>
+    <div class="div-title-fecha" id="titleFecha">Fecha</div>
+    <div class="div-fecha" id="fecha">
+        <div th:text="${currentDate}"></div>
+    </div>
+    <div class="div-title-nombre" id="titleNombre">Nombre</div>
+    <div class="div-nombre" id="nombre">
+        <div th:text="${clientName}"></div>
+    </div>
+    <div class="div-title-apellido" id="titleApellido">Apellido</div>
+    <div class="div-apellido" id="apellido">
+        <div th:text="${clientLastName}"></div>
+    </div>
+    <div class="div-title-cedula" id="titleCedula">C&eacute;dula</div>
+    <div class="div-cedula" id="cedula">
+        <div th:text="${clientIdentification}"></div>
+    </div>
+</div>
+<div class="page-header-last"></div>
+<div class="page-footer-last"></div>
+</body>
+</html>
